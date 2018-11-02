@@ -1,6 +1,6 @@
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('e135cfe3ae9e490892460c6a9dc7783c');
-
+require('dotenv').config()
+const newsapi = new NewsAPI(process.env.NEWS_API);
 // To query /v2/top-headlines
 // All options passed to topHeadlines are optional, but you need to include at least one of them
 
