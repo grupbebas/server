@@ -5,8 +5,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var usersRouter = require('./routes/users');
+const placeRoute = require('./routes/place')
+const matrixRoute = require('./routes/matrix')
 
 var app = express();
+
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token");
+	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+	next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -14,6 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/users', usersRouter);
+app.use('/place', placeRoute);
+app.use('/matrix/distance', matrixRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
