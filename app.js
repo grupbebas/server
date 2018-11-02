@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 var zomatoRouter = require('./routes/zomato')
 const placeRoute = require('./routes/place')
 const matrixRoute = require('./routes/matrix')
+const newsRoutes = require('./routes/news');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(function(req, res, next) {
 	next();
 });
 
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +34,8 @@ app.use('/users', usersRouter);
 app.use('/zomato', zomatoRouter)
 app.use('/place', placeRoute);
 app.use('/matrix/distance', matrixRoute);
+app.use('/news', newsRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
