@@ -12,6 +12,7 @@ var zomatoRouter = require('./routes/zomato')
 const placeRoute = require('./routes/place')
 const matrixRoute = require('./routes/matrix')
 const newsRoutes = require('./routes/news');
+var mealRouter = require('./routes/meal');
 
 var app = express();
 
@@ -24,7 +25,6 @@ app.use(function(req, res, next) {
 	next();
 });
 
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,12 +35,12 @@ app.use('/zomato', zomatoRouter)
 app.use('/place', placeRoute);
 app.use('/matrix/distance', matrixRoute);
 app.use('/news', newsRoutes);
-
+app.use('/meals', mealRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
