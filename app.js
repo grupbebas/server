@@ -16,15 +16,6 @@ var mealRouter = require('./routes/meal');
 
 var app = express();
 
-app.use(cors())
-
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token");
-	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-	next();
-});
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,6 +27,7 @@ app.use('/place', placeRoute);
 app.use('/matrix/distance', matrixRoute);
 app.use('/news', newsRoutes);
 app.use('/meals', mealRouter);
+
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
